@@ -87,7 +87,7 @@ massiiv (array) - järjestatud andmete kogum
 andmetüüp[] muutuja = new andmetüüp[maxKogus];
 nt. int[] numbrid = new int[10];
     String[] sonad = {"tekst1", "tekst2"};
-massiiv.length; //tagastab pikkuse
+    massiiv.length; //tagastab pikkuse
 
 int[] arvud = new int[10];
 arvud[0] = 12;
