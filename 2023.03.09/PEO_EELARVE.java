@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class PEO_EELARVE {
@@ -10,11 +9,19 @@ public class PEO_EELARVE {
         System.out.print("Mitu külalist on kutsutud? ");
         int mitu = sisse.nextInt();
         sisse.nextLine();
-        System.out.print("Informatsioon külaliste kohta: ");
+        System.out.println("Informatsioon külaliste kohta: ");
         String[] info = sisse.nextLine().split(", ");
-        System.out.println("Info: " + Arrays.toString(info));
         sisse.close();
         // ? Anna, + Peeter, + Ülle, ? Eva, ? Juhan, + Maria, + Epp
 
+        int tulemas = 0;
+        for (String inimene: info) {
+            if (inimene.startsWith("+")) tulemas++;
+        }
+
+        System.out.println("\nKutsutud on " + mitu + " inimest\n" +
+                tulemas + " inimest tuleb\n" +
+                "Maksimaalne eelarve: " + eelarve(mitu) +
+                "\nMinimaalne eelarve: " + eelarve(tulemas));
     }
 }
