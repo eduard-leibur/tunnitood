@@ -17,7 +17,6 @@ public class BUSSILIIN {
     }
     static ArrayList<String> peale(String peatus, ArrayList<String> marsruut) {
         ArrayList<String> sihtkohad = new ArrayList<>();
-
         Scanner sisse = new Scanner(System.in);
         System.out.print("Mitu sisenejat? ");
         int mitu = sisse.nextInt();
@@ -34,7 +33,6 @@ public class BUSSILIIN {
                 } else System.out.println("Sihtkoht pole marsruudil!");
             }
         }
-
         sisse.close();
         return sihtkohad;
     }
