@@ -15,9 +15,8 @@ public class BUSSILIIN {
         System.out.println("Väjub " + väljujaid + " inimest");
         return sihtkohad;
     }
-    static ArrayList<String> peale(String peatus, ArrayList<String> marsruut) {
+    static ArrayList<String> peale(String peatus, ArrayList<String> marsruut, Scanner sisse) {
         ArrayList<String> sihtkohad = new ArrayList<>();
-        Scanner sisse = new Scanner(System.in);
         System.out.print("Mitu sisenejat? ");
         int mitu = sisse.nextInt();
         sisse.nextLine();
@@ -33,7 +32,6 @@ public class BUSSILIIN {
                 } else System.out.println("Sihtkoht pole marsruudil!");
             }
         }
-        sisse.close();
         return sihtkohad;
     }
     public static void main(String[] args) {
@@ -45,13 +43,14 @@ public class BUSSILIIN {
         marsruut.add("Elva");
 
         ArrayList<String> sihtkohad = new ArrayList<>();
-
+        Scanner sisse = new Scanner(System.in);
         for (String peatus: marsruut) {
             System.out.println("Peatus: " + peatus);
-            sihtkohad = väljub(peatus, sihtkohad);
-            sihtkohad.addAll(peale(peatus, marsruut));
+            sihtkohad = new ArrayList<>(väljub(peatus, sihtkohad));
+            sihtkohad.addAll(peale(peatus, marsruut, sisse));
             System.out.println("Reisijate sihtkohad: " + sihtkohad);
             System.out.println("Buss väjub...\n");
         }
+        sisse.close();
     }
 }
