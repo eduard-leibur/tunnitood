@@ -16,26 +16,44 @@ public class BUSSILIIN {
         return sihtkohad;
     }
     static ArrayList<String> peale(String peatus, ArrayList<String> marsruut) {
+        ArrayList<String> sihtkohad = new ArrayList<>();
+
         Scanner sisse = new Scanner(System.in);
-        System.out.println("Mitu inimest? ");
-        int inimesi = sisse.nextInt();
+        System.out.print("Mitu sisenejat? ");
+        int mitu = sisse.nextInt();
         sisse.nextLine();
-        ArrayList<String> sihtkohad = new ArrayList<String>(inimesi);
-        for (int i = 0; i <= inimesi; i++) {
-            System.out.println(i + ". reisija sihtkoht: ");
-
+        if (mitu != 0) {
+            for (int i = 0; i < mitu; i++) {
+                System.out.print((i + 1) + ". reisija sihtkoht: ");
+                String sihtkoht = sisse.next();
+                sisse.nextLine();
+                if (Objects.equals(sihtkoht, peatus)) {
+                    System.out.println("Juba olete selles peatuses!");
+                } else if (marsruut.contains(sihtkoht)) {
+                    sihtkohad.add(sihtkoht);
+                } else System.out.println("Sihtkoht pole marsruudil!");
+            }
         }
-        sisse.close();
 
+        sisse.close();
+        return sihtkohad;
     }
     public static void main(String[] args) {
-        ArrayList<String> sihtkohad = new ArrayList<>();
-        sihtkohad.add("Kooli");
-        sihtkohad.add("Nõo");
-        sihtkohad.add("Kooli");
-        sihtkohad.add("Tartu");
-        sihtkohad.add("Meeri");
+        ArrayList<String> marsruut = new ArrayList<>();
+        marsruut.add("Tartu");
+        marsruut.add("Kooli");
+        marsruut.add("Nõo");
+        marsruut.add("Peedu");
+        marsruut.add("Elva");
 
-        System.out.println(väljub("Kooli", sihtkohad));
+        ArrayList<String> sihtkohad = new ArrayList<>();
+
+        for (String peatus: marsruut) {
+            System.out.println("Peatus: " + peatus);
+            sihtkohad = väljub(peatus, sihtkohad);
+            sihtkohad.addAll(peale(peatus, marsruut));
+            System.out.println("Reisijate sihtkohad: " + sihtkohad);
+            System.out.println("Buss väjub...\n");
+        }
     }
 }
