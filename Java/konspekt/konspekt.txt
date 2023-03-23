@@ -1,0 +1,202 @@
+Java
+
+kahte tüüpi muutujad: primitiivne ja objektid
+	objektid - meetodid, suure algustähega
+	primitiivsed - muutujal konkreetne väärtus, kehtiv andmetüüp
+		byte - 8-bitiline täisarv; võimalik [-128; 127]; vaikimisi 0
+		short - 16-bitiline täisarv; [-32 768; 32 767]; vaikimisi 0
+		int - 32-bitiline täisarv; [miljoneid]; vaikimisi 0
+		long - 64-bitiline pikk täisarv [pfffff]; vaikimisi 0L (long)
+
+		float - 32-bitiline 7 tüvenumbriga ujukomaarv; vaikimisi 0.0f (float); ei tohiks kasutata täpsete arvutustega
+		double - 64-bitiline 16 tüvenumbriga ujukomaarv; vaikimisi 0.0d
+
+		boolean - true või false; vaikimisi false
+		char - ühe sümboli jaoks
+	mitmele muutujale korraga:
+		int a, b, c;
+			a =
+			b =
+			c =
+alati tuleb märkdia andmetüüp
+	int a = 10;
+	String string1 = "This is";
+	ind[] list1 = {1, 2, 3};
+
+result++ või result--
+(ei saa System.out.println(result++), sest enne prindib, siis liidab)
+summa + ++result suurendab result ühe võrra ja siis liidab selle summale
+		
+loogelised sulud
+iga rea lõpus semikoolon
+Java on klassipõhine keel (kõik klassides)
+kuvatav osa tuleb kirjutada main-meetodisse
+
+üherealine kommentaar: //
+mitmerealine /**...*/
+
+importimised faili algusesse
+klassi defineerimeine
+meetodid
+main-meetod
+
+*sout -> System.out.println
+*psvm -> public static void main
+
+parem stiil
+isHappy == true -> isHappy
+isHappy == false -> !isHappy
+
+&& - and
+|| - or
+! - eitus
+== - on võrdsed
+!= - ei ole võrdsed
+
+elif pole, on else if:
+if (1 < 0) {
+            System.out.println("jep");
+        } else if (1 == 0) {
+            System.out.println("jesh");
+        } else {
+            System.out.println("no ma ka ei tea");
+        }
+
+for (int i = 0; i < 10; i++) {
+            System.out.println(i);
+        }
+
+while (i < 10) {
+            System.out.println(i ++);
+        }
+
+do { //järelkontrolliga tsükkel
+            //tsükli sisu
+        } while (//jätkamistingimus);
+
+tsüklid:
+	tsükkel (e üldtsüklidirektiiv)
+	while tsükkel (e eelkontrolliga tsükkel)
+	do-while tsükkel (e järelkontrolliga tsükkel)
+
+16.02
+
+massiiv (array) - järjestatud andmete kogum
+	kõik elemendid sama andmetüüpi; kõik elemendid nummerdatud (indeksid alates 0-st)
+	kindel pikkus, ei saa ületada max elementide arvu (saab üle pakkuda suvalt, kuid see kulutab mälu)
+andmetüüp[] muutuja = new andmetüüp[maxKogus];
+nt. int[] numbrid = new int[10];
+    String[] sonad = {"tekst1", "tekst2"};
+    massiiv.length; //tagastab pikkuse
+
+int[] arvud = new int[10];
+arvud[0] = 12;
+avud[1] = 3;
+System.out.println(arvud.length); //tagastab: 10
+
+Arrays.toString(massiiv); //NB! import java.util.Arrays;
+
+(Double.toString(komaArv);)
+(Integer.toString(taisArv);)
+
+
+loend (list) - järjestatud andmete kogum
+	kõik elemendid peavad olema sama andmetüüpi
+	elemendid nummerdatud (ineks algab 0-st)
+	pikkus võib muutuda
+
+	eri liike: levinumad ArrayList, LinkedList
+		ArrayList
+			parem andmete hoidmiseks ja võtmiseks
+			muudatused aeglasemad
+		LinkedList
+			parem andmete modifitseerimiseks
+			muudatused kiiremad
+
+List<Andmetp> m = new ArrayList<Andmetp>();
+List<Andmetp> m2 = new LinkedList<Andmetp>();
+
+nt. ArrayList<Integer> arvud = new ArrayList<Ineteger>();
+    List<String> tekstid = new LinkedList<String>();
+
+    tekstid.add("tekst1");
+    tekstid.add(1, "uusTekst"); //esimene arg on asukoht, teised liigutatakse edasi
+    tekstid.set(0, "asendus"); //asendatakse kindlal asukohal element
+
+    tekstid.size(); //elementide arv
+    tekstid.get(1); //indeksi järgi võtmine
+    tekstid.remove(1); //indeksi järgi kustutamine
+    tekstid.remove("tekst1"); //otsib ja eemaldab
+    tekstid.clear(); //tühjendab loendi
+
+Massiivist loendi tegemine:
+	Integer[] massiiv = {1, 2, 3};
+	List<Integer> list = Arrays.asList(massiiv); //muudab massiivi listiks
+	List<Integer> list2 = Arrays.asList(1, 3, 6, 5); //otse elementidest list
+
+Tsükli kasutamine loendiga:
+	for (andmetüüp muutuja : loend) {} //for-each
+	nt. for (String element : tekstid) {System.out.println(element)};
+	    loend.forEach(muutuja->System.out.println(muutuja)); //üherealine ehk lambda-avaldis
+
+Mitmemõõtmeline massiiv:
+	int[][] maatriks = new int[2][4]; //[[ , , , ], [ , , , ]]
+	ArrayList<ArrayList<String>> listiList = new ArrayList<ArrayList<String>>(); //mitmemõõtmeline loend
+	ArrayList<int[]>; //järjendis massiiv
+
+
+17.02 - Andmestruktuurid 2
+
+Hulk (set) - elementide kogum
+	ei ole korduvaid elemente (lih. ei luba)
+	Liike:
+		HashSet - ei hoia meeles järjekorda
+		LinkedHashSet - järjekord meeles
+		TreeSet - andmed kasvavas järjekorras
+		jt.
+	Set<String> tekstid = new HashSet<>();
+	tekstid.add("tekst1"); //lisamine
+	tekstid.contains("t1"); //sisalduvus
+	tekstid.isEmpty(); //kontrollib tühjust
+	tekstid.remove("tekst1"); //eemaldab
+	tekstid.clear(); //tühjendab
+	tekstid.size(); //tagastab elementide arvu
+
+Kujutis (map) - võti-väärtus paarid
+	Pythonis sõnastik (dictionary)
+	etteantud andmetüübid (nii võtmel kui ka väärtusel)
+		primitiivseid ei saa, seega: int->Integer jne.
+	võtmed on unikaalsed (ükski võti ei kattu teisega)
+	Liike:
+		HashMap - ei hoia järjekorda meeles
+		LinkedHashMap - järkjekord meeles
+		TreeMap - kasvav
+	Map<String, Double> popul = new HashMap<>();
+	popul.put("Tartu", 9.7); //lisamine (võti ei tohi juba olemas olla)
+	popul.putIfAbsent("Nõo", 0.4); //lisa kui puudu
+	popul.replace("Nõo", 0.5); //asendab
+	popul.get("Tartu"); //võtmeväärtus
+	popul.getOrDefault("Nõo", 0); //võtme väärtus, kui võtit pole siis vaikeväärtus
+	popul.size(); //paaride arv
+
+Magasin ehk pinu (stack) - LIFO: last-in-first-out
+	Liike:
+		Stack (vähem kasutatav)
+		Deque
+		ArrayDeque
+	Deque<String> pinu = new ArrayDeque<String>();
+	pinu.push("Tartu"); //lisamine
+	pinu.push("Pauluse"); pinu.push("Raja");
+	pinu.pop(); //võtab viimase ("Raja") välja ja näitab
+	pinu.peek(); //esimese ("Tartu") piilumiseks
+	pinu.isEmpty(); //tõeväärtus, kas tühi
+
+Järjekord (queue) - FIFO: first-in-first-out
+	Liike:
+		Queue (kasutame LinkedList-ga)
+		eelistusjärjekord (priority queue) nt. EMOS-s
+	Queue<Integer> jrk = new LinkedList<>();
+	jrk.add(123); //lisamine
+	jrk.add(234); jrk.add(345); jrk.add(456);
+	jrk.remove(); //võtab esimese (123) välja
+	jrk.isEmpty(); //tõeväärtus, kas on tühi
