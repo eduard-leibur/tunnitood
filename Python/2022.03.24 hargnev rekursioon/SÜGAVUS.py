@@ -4,10 +4,12 @@ def sügavus(listide_list):
         return 0
     for element in listide_list:
         if type(element) == list:   # isinstance(element, list)
-            sügavused.append(sügavus(element))
+            sügavused.append(1 + sügavus(element))
         else:
             sügavused.append(1)
     return max(sügavused)
 
 
 print(sügavus([[], [[[[]], []], []]]))
+print(sügavus([[], []]))
+print(sügavus([[[[]]]]))
