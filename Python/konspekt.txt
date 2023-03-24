@@ -20,3 +20,23 @@ Rekursioon (finktsiooni defineerimises kutsume sama defineetritavat funktsiooni 
                 return jarjend[0] + summa(jarjend[1:])
 
     Fraktalid - puu
+
+24.03
+Hargnev rekursioon
+    rakendame alamülesannet mitmele alamosale
+
+    nt. Summa
+        j = [1, [2, 3], [[[[4, 5], 6]]], 7, 8]
+            1 + [...] + [...] + 7 + 8   36
+                2 + 3   [...]           20
+                        [...] + 6       15
+                        4 + 5           9
+            1 + 5   +   9   +   6 + 7 + 8 = 36
+        def liida(järjend):
+            summa = 0
+            for element in järjend:
+                if type(element) == list:   # samm
+                    summa += liida(element)
+                else:   # baas
+                    summa += element
+            return summa
