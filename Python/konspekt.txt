@@ -40,3 +40,25 @@ Hargnev rekursioon
                 else:   # baas
                     summa += element
             return summa
+
+30.03
+Fraktalid
+    osa on terviku sarnane
+    baasjuhtum on suur, iga sammuga minnakse väiksemaks
+        alustatakse tüvest
+        liigutakse soovitud arv suundades soovitud sügavusele
+    korrapärane või juhuslik
+
+    nt.
+    def puu(pikkus):
+        if pikkus < 25: # rekursiooni baas
+            forward(pikkus) # tehakse ainult tüvi
+            back(pikkus)
+        else:   # samm
+            forward(pikkus) # tüvi
+            left(45)
+            puu(pikkus * 0.7)   # haru ehk väiksem puu
+            right(90)
+            puu(pikkus * 0.7)   # 2. haru ehk väiksem puu
+            left(45)
+            back(pikkus)
