@@ -13,6 +13,7 @@ def fraktal(pikkus, tase):
         right(180)
 
 
+delay(0)
 penup()
 back(300)
 left(90)
