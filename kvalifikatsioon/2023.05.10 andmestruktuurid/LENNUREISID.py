@@ -28,3 +28,12 @@ class EsimeseKlassiReisija:
     def __str__(self):
         tekst = str(self.kliendinr) + " - lende: " + str(len(self.lennud))
         print(tekst)
+
+
+class Lend:
+    def __init__(self, sihtkoht, alghind):
+        self.sihtkoht = sihtkoht
+        self.alghind = alghind
+
+    def vormindaLennuinfo(self):
+        return str("Lend: sihtkoht - " + self.sihtkoht)
