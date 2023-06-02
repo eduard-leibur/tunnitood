@@ -34,18 +34,21 @@ class Patsient:
         self.isikukood = int(isikukood)
         self.retseptid = retseptid
     
-    def lisa_ravim(self, ravim: Ravim, kogus):
-        self.retseptid[ravim] = int(kogus)
+    def lisa_ravim(self, ravimi_nimi, kogus):
+        self.retseptid[ravimi_nimi] = int(kogus)
     
     def kuva_retseptid(self):
         return dict(self.retseptid)
     
     def osta_ravim(self, ravimi_nimi, kogus: int):
-        if self.retseptid[ravimi_nimi] >= kogus:
-            self.retseptid[ravimi_nimi] -= kogus
-            print("Edukalt ostetud.")
-        elif self.retseptid[ravimi_nimi] > 0:
-            print("Retsepte on " + str(self.retseptid[ravimi_nimi]) + " tükki. Ei saa ostu sooritada.")
+        if ravimi_nimi in self.retseptid:
+            if self.retseptid[ravimi_nimi] >= kogus:
+                self.retseptid[ravimi_nimi] -= kogus
+                print("Edukalt ostetud.")
+            elif self.retseptid[ravimi_nimi] > 0:
+                print("Retsepte on " + str(self.retseptid[ravimi_nimi]) + " tükki. Ei saa ostu sooritada.")
+            else:
+                priint("Retsepte on 0 tk.")
         else:
             print("Retseptid puuduvad. Ei saanud ostu sooritada.")
 
@@ -108,3 +111,32 @@ for patsient in kliendid:
         for retsept in patsient.retseptid:
             if retsept == "amoksiklav":
                 patsient.osta_ravim("amoksiklav", patsient.retseptid[retsept])
+
+# 4)
+print("Käsimüügiravitmite koodid:")
+for ravim in ravimid:
+    if type(ravim) == Ravim:
+        print("\t" + str(ravim.kood))
+
+# 5)
+for patsient in kliendid:
+    if patsient.nimi == "Veste Hauger":
+        patsient.osta_ravim("kventiax", 1)
+
+# 6)
+for patsient in kliendid:
+    if patsient.nimi == "Mati Kalle":
+        patsient.lisa_ravim("ospamox", 3)
+        print(patsient.kuva_retseptid())
+
+# 7) võimatu
+
+# 8)
+for patsient in kliendid:
+    if patsient.nimi == "Maie Mõngel":
+        patsient.osta_ravim("kventiax", 3)
+
+# 9)
+for ravim in ravimid:
+    if ravim.nimi == "amoksiklav":
+        print(str(ravim.haigekassa_maksab()))
